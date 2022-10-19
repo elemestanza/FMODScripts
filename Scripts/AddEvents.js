@@ -26,7 +26,7 @@ studio.menu.addMenuItem({
         
         var listString = studio.system.getText("List of new events", "Event 1, Event 2...");
 
-        var isDataInLines = studio.system.question("Is your oeiginal data sort out by lines? I.e., copied from an Excel file");
+        var isDataInLines = studio.system.question("Is your original data sort out by lines? I.e., copied from an Excel file");
         var separator = "";
         if (isDataInLines) separator = "\n";
         else separator = studio.system.getText("Events' name separator (i.e., \", \" in \"Event 1, Event 2\")", ", ");
