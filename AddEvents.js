@@ -50,8 +50,8 @@ studio.menu.addMenuItem({
             var newEvent = studio.project.create("Event");
             var track = studio.project.create("GroupTrack");
             track.mixerGroup.output = newEvent.mixer.masterBus;
-            track.mixerGroup.name = name + "_" + i;
-            newEvent.name = eventList[i];
+            track.mixerGroup.name = "Audio 1";
+            newEvent.name = name + "_" + i;
             newEvent.folder = folder;
             newEvent.relationships.groupTracks.add(track);
         }
