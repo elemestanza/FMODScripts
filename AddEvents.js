@@ -2,7 +2,7 @@
    FMOD Studio Script:
    Add Events in a Folder from a String or a File
    Author: Elena Mestanza (github.com/elemestanza)
-   Version: 1.01
+   Version: 1.02
    -------------------------------------------
  */
 
@@ -28,6 +28,29 @@ studio.menu.addMenuItem({
             var track = studio.project.create("GroupTrack");
             track.mixerGroup.output = newEvent.mixer.masterBus;
             track.mixerGroup.name = "Audio 1";
+            newEvent.name = eventList[i];
+            newEvent.folder = folder;
+            newEvent.relationships.groupTracks.add(track);
+        }
+    },
+});
+
+studio.menu.addMenuItem({
+    name: "Add Events\\From a Name (e.g. event_1, event_2...)",
+    isEnabled: function() {
+        var folder = studio.window.browserCurrent();
+        return folder && folder.isOfExactType("EventFolder");
+    },
+    execute: function() {
+        var name = studio.system.getText("Event name", "event");
+        var numberOfEvents = studio.system.getNumber("Number of events", 2);
+
+        var folder = studio.window.browserCurrent();
+        for (var i = 1; i <= numberOfEvents; i++) {
+            var newEvent = studio.project.create("Event");
+            var track = studio.project.create("GroupTrack");
+            track.mixerGroup.output = newEvent.mixer.masterBus;
+            track.mixerGroup.name = name + "_" + i;
             newEvent.name = eventList[i];
             newEvent.folder = folder;
             newEvent.relationships.groupTracks.add(track);
