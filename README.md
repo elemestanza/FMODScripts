@@ -16,3 +16,9 @@ The version of these FMOD Scripts is 2.02 (scripts revised in v.2.02.07)
 3. After adding or altering a script in one of these directories, you can select "Scripts > Reload" to use the newly updated script.
 
 *(Information obtained from [FMOD Documentation](https://www.fmod.com/docs/2.02/studio/scripting-terminal-reference.html))*
+
+
+## List of scripts
+### AddEvents.js
+- Add Events in a Folder from a String or a name or a file.
+- Could create a subfolder for the new events.
