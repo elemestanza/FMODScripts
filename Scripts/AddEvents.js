@@ -1,9 +1,9 @@
 /* -------------------------------------------
    FMOD Studio Script:
-   Add Events in a Folder from a String or a name or a File
+   Add Events in a Folder from a String or a File
    - Could create a subfolder for the new events
    Author: Elena Mestanza (github.com/elemestanza)
-   Version: 1.03
+   Version: 1.03_1
    -------------------------------------------
  */
 
@@ -32,6 +32,11 @@ studio.menu.addMenuItem({
         else separator = studio.system.getText("Events' name separator (i.e., \", \" in \"Event 1, Event 2\")", ", ");
 
         var eventList = listString.split(separator);
+
+        for (var i = 0; i < eventList.length; i++) {
+            eventList[i].replace("\r","");
+            eventList[i].replace("\t","");
+        }
 
         for (var i = 0; i < eventList.length; i++) {
             var newEvent = studio.project.create("Event");
@@ -104,6 +109,11 @@ studio.menu.addMenuItem({
         var file = studio.system.getFile(filePath);
         file.open(studio.system.openMode.ReadOnly);
         var eventList = file.readText(8192).split(separator);
+
+        for (var i = 0; i < eventList.length; i++) {
+            eventList[i].replace("\r","");
+            eventList[i].replace("\t","");
+        }
 
         for (var i = 0; i < eventList.length; i++) {
             var newEvent = studio.project.create("Event");
