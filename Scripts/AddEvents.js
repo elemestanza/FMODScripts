@@ -3,7 +3,7 @@
    Add Events in a Folder from a String or a File
    - Could create a subfolder for the new events
    Author: Elena Mestanza (github.com/elemestanza)
-   Version: 1.03_1
+   Version: 1.04
    -------------------------------------------
  */
 
@@ -32,10 +32,8 @@ studio.menu.addMenuItem({
         else separator = studio.system.getText("Events' name separator (i.e., \", \" in \"Event 1, Event 2\")", ", ");
 
         var eventList = listString.split(separator);
-
         for (var i = 0; i < eventList.length; i++) {
-            eventList[i].replace("\r","");
-            eventList[i].replace("\t","");
+            eventList[i] = eventList[i].replace(/[\n\r\t<>"\/\\\|\?\*']/gm, '');
         }
 
         for (var i = 0; i < eventList.length; i++) {
@@ -68,6 +66,7 @@ studio.menu.addMenuItem({
         }
 
         var name = studio.system.getText("Event name", "event");
+        name = name.replace(/[\n\r\t<>"\/\\\|\?\*']/gm, '');
         var numberOfEvents = studio.system.getNumber("Number of events", 2);
 
         for (var i = 1; i <= numberOfEvents; i++) {
@@ -109,10 +108,8 @@ studio.menu.addMenuItem({
         var file = studio.system.getFile(filePath);
         file.open(studio.system.openMode.ReadOnly);
         var eventList = file.readText(8192).split(separator);
-
         for (var i = 0; i < eventList.length; i++) {
-            eventList[i].replace("\r","");
-            eventList[i].replace("\t","");
+            eventList[i] = eventList[i].replace(/[\n\r\t<>"\/\\\|\?\*']/gm, '');
         }
 
         for (var i = 0; i < eventList.length; i++) {
